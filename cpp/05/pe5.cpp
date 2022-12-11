@@ -6,15 +6,13 @@ bool is_prime(unsigned int num);
 
 int main(){
     system("CLS");
-    int result = 1;
-    int expon, MAX_VAL = 20;
+    unsigned long int result = 1;
+    int temp, MAX_VAL = 20;
     for(int i=2; i<=MAX_VAL; i++){
         if(is_prime(i)){
-            // std::cout<<i<<std::endl;
-            expon = 1;
-            while(pow(i, expon)<(MAX_VAL)) expon++; 
-            std::cout<<i<<"^"<<(expon - 1)<<" = "<<(pow(i, (expon - 1)))<<std::endl;
-            result *= (pow(i, --expon));           
+          temp = i;
+          while((temp*i)<MAX_VAL) temp *= i;
+           result *= temp;
         }
     }
     std::cout<<result<<std::endl;

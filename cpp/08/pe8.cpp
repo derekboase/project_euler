@@ -2,21 +2,27 @@
 #include <stdlib.h>
 #include <fstream>
 #include <vector>
+#include <chrono>
 
 void read_arr(std::vector<std::vector<int>> &data, int num);
 unsigned long long int max_prod(std::vector<int> lst, int num);
 
 int main(){
+    
     system("CLS");
     int adj_prod = 13;
     unsigned long long int res = 0, temp_prod;
     std::vector<std::vector<int>> data;
     read_arr(data, adj_prod);
+    auto start = std::chrono::high_resolution_clock::now();
     for(unsigned int lst_idx=0; lst_idx<data.size(); lst_idx++){
         temp_prod = max_prod(data[lst_idx], adj_prod);
         res = (res < temp_prod) ? temp_prod : res;
     }
     std::cout<<res<<std::endl;
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+    std::cout<<duration.count()<<std::endl;
     return 0;
 }
 

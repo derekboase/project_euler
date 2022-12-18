@@ -1,7 +1,8 @@
 #include <iostream>
 #include <stdlib.h>
 #include <fstream>
-#include <chrono>
+#include <bits/stdc++.h>
+#include <time.h>
 
 void read_arr(int (&data)[1000]);
 unsigned long long int max_prod(int data[1000], int num);
@@ -9,12 +10,21 @@ unsigned long long int max_prod(int data[1000], int num);
 int main(){
     system("CLS");
     int data[1000], adj_val = 13;
+
+    clock_t start, end;
+
+    start = clock();
+
     read_arr(data);
-    auto start = std::chrono::high_resolution_clock::now();
+
     std::cout<<max_prod(data, adj_val)<<std::endl;
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-    std::cout<<duration.count()<<std::endl;
+
+    end = clock();
+    double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+    std::cout << std::fixed;
+    std::cout << std::setprecision(16);
+    std::cout << "Time taken by program is: " << time_taken << std::endl;
+    
     return 0;
 }
 

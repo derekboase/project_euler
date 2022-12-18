@@ -29,5 +29,5 @@ for i in range(len(data_str)-13):
     temp_num = 1
 	
 print(f'The largest product of 13 adjacent numbers is {largest}')
-sleep(1)
-print(f'The total run time is {(time_ns() - start)*1e-3}')
+stop = time_ns()
+print(f'{stop - start}')

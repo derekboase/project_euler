@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <fstream>
 #include <vector>
-#include <chrono>
+#include <time.h>
+#include <bits/stdc++.h>
 
 void read_arr(std::vector<std::vector<int>> &data, int num);
 unsigned long long int max_prod(std::vector<int> lst, int num);
@@ -13,16 +14,26 @@ int main(){
     int adj_prod = 13;
     unsigned long long int res = 0, temp_prod;
     std::vector<std::vector<int>> data;
+
+    clock_t start, end;
+
+    start = clock();
+
     read_arr(data, adj_prod);
-    auto start = std::chrono::high_resolution_clock::now();
     for(unsigned int lst_idx=0; lst_idx<data.size(); lst_idx++){
         temp_prod = max_prod(data[lst_idx], adj_prod);
         res = (res < temp_prod) ? temp_prod : res;
     }
+
     std::cout<<res<<std::endl;
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-    std::cout<<duration.count()<<std::endl;
+
+    end = clock();
+    double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+    std::cout << std::fixed;
+    std::cout << std::setprecision(16);
+    std::cout << "Time taken by program is: " << time_taken << std::endl;
+
+    // system("PAUSE");
     return 0;
 }
 
@@ -44,7 +55,6 @@ void read_arr(std::vector<std::vector<int>> &data, int num){
     }
     inputFile.close();
 }
-
 unsigned long long int max_prod(std::vector<int> lst, int num){
     unsigned long long int temp=2, interm=1;
     int idx;
